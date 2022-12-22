@@ -13,6 +13,8 @@ new Inspector(
   composer
 )
 
+scene.remove(camera.parent!)
+
 const controls = new OrbitControls(camera, renderer.domElement)
 const loader = new PCDLoader()
 
