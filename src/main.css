@@ -17,6 +17,8 @@
 
 #drop-zone {
   position: absolute;
+  background-color: #242424;
+  z-index: 10000;
   top: 0;
   left: 0;
   width: 100vw;
