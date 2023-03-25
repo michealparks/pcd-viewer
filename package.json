@@ -9,10 +9,15 @@
     "build-ci": "vite build --base=/pcd-viewer/",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "three": "^0.150.1",
+    "three-inspect": "^0.2.4",
+    "trzy": "^0.0.18"
+  },
   "devDependencies": {
-    "@types/three": "^0.146.0",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.3"
+    "@types/three": "^0.149.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.1"
   },
   "repository": {
     "type": "git",
@@ -23,10 +28,5 @@
   "bugs": {
     "url": "https://github.com/michealparks/pcd-viewer/issues"
   },
-  "homepage": "https://github.com/michealparks/pcd-viewer#readme",
-  "dependencies": {
-    "three": "^0.148.0",
-    "three-inspect": "^0.2.4",
-    "three-kit": "github:michealparks/three-kit"
-  }
+  "homepage": "https://github.com/michealparks/pcd-viewer#readme"
 }
