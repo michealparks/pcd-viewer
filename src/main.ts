@@ -5,14 +5,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader'
 import Inspector from 'three-inspect'
 
-const { scene, camera, renderer, run } = threeInstance()
+const { scene, camera, renderer } = threeInstance()
 
-new Inspector(
+new Inspector({
   THREE,
   scene,
-  camera,
+  camera: camera as THREE.PerspectiveCamera,
   renderer
-)
+})
 
 const controls = new OrbitControls(camera, renderer.domElement)
 const loader = new PCDLoader()
@@ -44,7 +44,5 @@ addEventListener('drop', (event) => {
 
   reader.readAsArrayBuffer((event as any).dataTransfer.files[0])
 })
-
-run()
 
 controls.update()
