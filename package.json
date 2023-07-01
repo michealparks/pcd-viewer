@@ -10,14 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "three": "^0.152.2",
-    "three-inspect": "^0.3.2",
-    "trzy": "^0.0.37"
+    "three": "^0.154.0",
+    "three-inspect": "^0.3.4",
+    "trzy": "^0.0.54"
   },
   "devDependencies": {
-    "@types/three": "^0.152.0",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.4"
+    "@types/three": "^0.152.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9"
   },
   "repository": {
     "type": "git",

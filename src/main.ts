@@ -1,25 +1,24 @@
 import './main.css'
 import * as THREE from 'three'
-import { threeInstance } from 'trzy'
+import { three } from 'trzy'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader'
 import Inspector from 'three-inspect'
 
-const { scene, camera, renderer } = threeInstance()
+const { scene, camera, renderer } = three({ parameters: { antialias: true }})
 
 new Inspector({
-  THREE,
   scene,
-  camera: camera as THREE.PerspectiveCamera,
+  camera: camera.current as THREE.PerspectiveCamera,
   renderer
 })
 
-const controls = new OrbitControls(camera, renderer.domElement)
+const controls = new OrbitControls(camera.current, renderer.domElement)
 const loader = new PCDLoader()
 
 const dropZone = document.querySelector('#drop-zone')!
 
-camera.position.set(1, 1, 1)
+camera.current.position.set(1, 1, 1)
 
 // addEventListener("dragstart", (event) => console.log('start', event))
 
