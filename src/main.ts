@@ -46,10 +46,9 @@ div.style.cssText = `
 `
 document.body.append(div)
 
-const handleMove = (event) => {
+const handleMove = (event: THREE.Event) => {
   const [intersection] = event.intersections as THREE.Intersection[]
 
-  console.log(intersection)
   if (!intersection) {
     return
   }
