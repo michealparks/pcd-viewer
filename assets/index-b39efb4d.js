@@ -3632,4 +3632,4 @@ void main() {
   left: 1rem;
   z-index: 100;
   color: white;
-`;document.body.append(Ou);const EC=r=>{const[e]=r.intersections;if(console.log(e),!e)return;const{point:t}=e;Ou.innerHTML=`${t.x.toFixed(4)}, ${t.y.toFixed(4)}, ${t.z.toFixed(4)}`};Yv.addEventListener("move",EC);addEventListener("dragenter",r=>r.preventDefault());addEventListener("dragover",r=>r.preventDefault());addEventListener("drop",r=>{r.preventDefault();const e=new FileReader;e.addEventListener("load",t=>{const n=wC.parse(t.target.result);qv.add(n),Yv.objects=[n],yC.remove()}),e.readAsArrayBuffer(r.dataTransfer.files[0])});xC.update();
+`;document.body.append(Ou);const EC=r=>{const[e]=r.intersections;if(!e)return;const{point:t}=e;Ou.innerHTML=`${t.x.toFixed(4)}, ${t.y.toFixed(4)}, ${t.z.toFixed(4)}`};Yv.addEventListener("move",EC);addEventListener("dragenter",r=>r.preventDefault());addEventListener("dragover",r=>r.preventDefault());addEventListener("drop",r=>{r.preventDefault();const e=new FileReader;e.addEventListener("load",t=>{const n=wC.parse(t.target.result);qv.add(n),Yv.objects=[n],yC.remove()}),e.readAsArrayBuffer(r.dataTransfer.files[0])});xC.update();
