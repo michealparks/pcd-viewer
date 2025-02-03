@@ -1,88 +1,90 @@
-import './main.css'
-import * as THREE from 'three'
-import { useTrzy, MouseRaycaster, ViewHelper } from 'trzy'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader'
-import Inspector from 'three-inspect'
-import { useBvhRaycast } from './hooks/use-bvh-raycast'
+import "./main.css";
+import * as THREE from "three";
+import { useTrzy, MouseRaycaster, ViewHelper } from "trzy";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { PCDLoader } from "three/examples/jsm/loaders/PCDLoader";
+import Inspector from "three-inspect";
+import { useBvhRaycast } from "./hooks/use-bvh-raycast";
 
-const { scene, camera, renderer } = useTrzy()
+const { scene, camera, renderer } = useTrzy();
 
-useBvhRaycast({
-  firstHitOnly: true,
-  maxDepth: 100,
-})
+// useBvhRaycast({
+//   firstHitOnly: true,
+//   maxDepth: 100,
+// });
 
-localStorage.setItem('three-inspect.grid', 'true')
-localStorage.setItem('three-inspect.axes', 'true')
+localStorage.setItem("three-inspect.grid", "true");
+localStorage.setItem("three-inspect.axes", "true");
 
 new Inspector({
   scene,
   camera: camera.current as THREE.PerspectiveCamera,
-  renderer
-})
+  renderer,
+});
 
-new ViewHelper(camera.current, renderer)
+new ViewHelper(camera.current, renderer);
 
 const raycaster = new MouseRaycaster({
   camera: camera.current,
   target: renderer.domElement,
-})
+});
 
-const controls = new OrbitControls(camera.current, renderer.domElement)
-const loader = new PCDLoader()
+const controls = new OrbitControls(camera.current, renderer.domElement);
+const loader = new PCDLoader();
 
-const dropZone = document.querySelector('#drop-zone')!
+const dropZone = document.querySelector("#drop-zone")!;
 
-camera.current.position.set(1, 1, 1)
+camera.current.position.set(1, 1, 1);
 
-const div = document.createElement('div')
+const div = document.createElement("div");
 div.style.cssText = `
   position: absolute;
   bottom: 1rem;
   left: 1rem;
   z-index: 100;
   color: white;
-`
-document.body.append(div)
+`;
+document.body.append(div);
 
 const handleMove = (event: THREE.Event) => {
-  const [intersection] = event.intersections as THREE.Intersection[]
+  const [intersection] = event.intersections as THREE.Intersection[];
 
   if (!intersection) {
-    return
+    return;
   }
 
-  const { point } = intersection
+  const { point } = intersection;
 
-  div.innerHTML = `${point.x.toFixed(4)}, ${point.y.toFixed(4)}, ${point.z.toFixed(4)}`
-}
+  div.innerHTML = `${point.x.toFixed(4)}, ${point.y.toFixed(
+    4
+  )}, ${point.z.toFixed(4)}`;
+};
 
-raycaster.addEventListener('move', handleMove)
+raycaster.addEventListener("move", handleMove);
 
 // addEventListener("dragstart", (event) => console.log('start', event))
 
 // prevent default to allow drop
-addEventListener('dragenter', (event) => event.preventDefault())
+addEventListener("dragenter", (event) => event.preventDefault());
 
 // prevent default to allow drop
-addEventListener("dragover", (event) => event.preventDefault())
+addEventListener("dragover", (event) => event.preventDefault());
 
-addEventListener('drop', (event) => {
-  event.preventDefault()
+addEventListener("drop", (event) => {
+  event.preventDefault();
 
-  const reader = new FileReader()
+  const reader = new FileReader();
 
-  reader.addEventListener('load', (event) => {
-    const points = loader.parse(event.target!.result!)
+  reader.addEventListener("load", (event) => {
+    const points = loader.parse(event.target!.result!);
 
-    scene.add(points)
-    raycaster.objects = [points]
+    scene.add(points);
+    raycaster.objects = [points];
 
-    dropZone.remove()
-  })
+    dropZone.remove();
+  });
 
-  reader.readAsArrayBuffer((event as any).dataTransfer.files[0])
-})
+  reader.readAsArrayBuffer((event as any).dataTransfer.files[0]);
+});
 
-controls.update()
+controls.update();
